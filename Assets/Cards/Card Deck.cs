@@ -7,11 +7,11 @@ public class CardDeck
 {
     List<Card> deck;
     System.Random rng = new();
-    public CardDeck(){
+    public CardDeck(List<Sprite> faceList){
         deck = new List<Card>();
         foreach(Suites suite in Enum.GetValues(typeof(Suites))){
             for(int i = 0; i <13; i++){
-                deck.Add(new Card(i, suite));
+                deck.Add(new Card(i, suite, faceList));
             }
         }
     }
@@ -33,6 +33,18 @@ public class CardDeck
         {
             Debug.Log(card.number.ToString() + " " + card.suite.ToString());
         }
+    }
+
+    public Card Pop()
+    {
+        Card victim = deck[0];
+        int i = 0;
+        while(i<deck.Count-1)
+        {
+            deck[i] = deck [i+1];
+            i++;
+        }
+        return victim;
     }
 }
 

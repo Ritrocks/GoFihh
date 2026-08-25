@@ -371,6 +371,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed6efaff69336004f8bfd795c1aee3d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faceList:
+  - {fileID: -1073974500, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -809462485, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 1890620494, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -371549458, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 1243010919, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -1423961113, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 1457622035, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 1531013020, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 1231196083, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 538170685, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 688121161, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -1483412166, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 484036053, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 1666097773, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 1989799426, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -868379904, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -584080728, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -482783489, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 402845787, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 1559879251, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -1084173617, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -1528248308, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -890683702, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -1470562390, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -2022031482, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -956784038, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -537394467, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -2117645394, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -1175602390, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 1240204301, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -411905299, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 1974328608, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -674250930, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -1398583023, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -895410522, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -2016193221, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -1662063444, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -1941965009, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 380939342, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 96113277, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 2006640758, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 1992064509, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 548964638, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 1634539557, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 396592378, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -757266874, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 860739999, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 2132981443, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -673623642, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -1051699972, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: -1366604509, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  - {fileID: 12628962, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
 --- !u!4 &1245009326
 Transform:
   m_ObjectHideFlags: 0
