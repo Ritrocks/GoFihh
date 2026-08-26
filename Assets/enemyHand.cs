@@ -1,13 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.XR;
 
-public class playerHand : MonoBehaviour, Hand
+public class enemyHand : MonoBehaviour, Hand
 {
     [SerializeField]List<Slot> Hand = new();
+    [SerializeField] NPC npc;
     public void Deal(Card card, int i)
     {
         Hand[i].Deal(card);
@@ -18,17 +16,17 @@ public class playerHand : MonoBehaviour, Hand
         int i = 0;
         while(i < 2)
         {
-            Hand[i].Show();
+            npc.Show(Hand[i].Card, i);
             i++;
         }
     }
     public void hideStartingCards()
     {
-         int i = 0;
+       /*   int i = 0;
         while(i < 2)
         {
-            Hand[i].Hide();
+            npc.Hide(Hand[i].Card, i);
             i++;
-        }
+        } */
     }
 }

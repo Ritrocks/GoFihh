@@ -7,11 +7,12 @@ public class CardDeck
 {
     List<Card> deck;
     System.Random rng = new();
-    public CardDeck(List<Sprite> faceList){
+    public CardDeck(){
         deck = new List<Card>();
         foreach(Suites suite in Enum.GetValues(typeof(Suites))){
             for(int i = 0; i <13; i++){
-                deck.Add(new Card(i, suite));
+                Card card = new Card(i, suite);
+                deck.Add(card);
             }
         }
     }
@@ -38,6 +39,7 @@ public class CardDeck
     public Card Pop()
     {
         Card victim = deck[0];
+        if (victim == null) Debug.LogError("found the error");
         int i = 0;
         while(i<deck.Count-1)
         {

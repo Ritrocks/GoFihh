@@ -6,21 +6,22 @@ public class Slot : MonoBehaviour
 {
     SpriteRenderer spriteRenderer;
     [SerializeField]List<Sprite> faceList;
+    [SerializeField] Sprite Backside;
     Card card;
+    public Card Card => card;
    #region visuals
    void OnEnable()
     {
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = null;
     }
-    public void Set(Card dealtCard)
+    public void Deal(Card dealtCard)
     {
+        if(dealtCard == null) {Debug.LogError("dealt card is null"); return;}
         card = dealtCard;
+        Hide();
     }
-    public void AnimateDealing()
-    {
-        spriteRenderer.sprite = faceList[63];
-    }
+
     public void Show()
     {
         if (card == null) { Debug.LogError("Show called with no card set", this); return; }
@@ -29,7 +30,7 @@ public class Slot : MonoBehaviour
     }
     public void Hide()
     {
-        spriteRenderer.sprite = faceList[63];
+        spriteRenderer.sprite = Backside;
     }
    
     Sprite MakeMyFace(int number, Suites suite)
@@ -59,6 +60,6 @@ public class Slot : MonoBehaviour
 
     void OnMouseDown()
     {
-        
+        Debug.Log("clicked");
     }
 }
