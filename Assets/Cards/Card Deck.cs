@@ -11,7 +11,7 @@ public class CardDeck
         deck = new List<Card>();
         foreach(Suites suite in Enum.GetValues(typeof(Suites))){
             for(int i = 0; i <13; i++){
-                deck.Add(new Card(i, suite, faceList));
+                deck.Add(new Card(i, suite));
             }
         }
     }
