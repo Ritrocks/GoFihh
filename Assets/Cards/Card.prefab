@@ -167,7 +167,7 @@ MonoBehaviour:
   - {fileID: -990153138, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
   - {fileID: 1724462300, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
   - {fileID: -1946509892, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
-  Backside: {fileID: -990153138, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
+  backside: {fileID: -990153138, guid: 7cb58862b5fd2224e9647676949ff7e5, type: 3}
 --- !u!61 &5972870855177584310
 BoxCollider2D:
   m_ObjectHideFlags: 0

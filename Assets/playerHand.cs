@@ -7,7 +7,7 @@ using UnityEngine.XR;
 
 public class playerHand : MonoBehaviour, Hand
 {
-    [SerializeField]List<Slot> Hand = new();
+    [SerializeField]List<TableSlot> Hand = new();
     public void Deal(Card card, int i)
     {
         Hand[i].Deal(card);

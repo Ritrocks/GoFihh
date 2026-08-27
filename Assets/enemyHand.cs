@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class enemyHand : MonoBehaviour, Hand
 {
-    [SerializeField]List<Slot> Hand = new();
+    [SerializeField]List<TableSlot> Hand = new();
     [SerializeField] NPC npc;
     public void Deal(Card card, int i)
     {

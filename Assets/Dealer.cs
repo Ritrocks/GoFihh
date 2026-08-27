@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Dealer : MonoBehaviour
 {
@@ -10,9 +11,11 @@ public class Dealer : MonoBehaviour
     [SerializeField] playerHand playerHand;
     [SerializeField] enemyHand enemyHand;
     [SerializeField] GameObject cardPrefab;
+    [SerializeField] Text text;
     Moves playerMove;
     Moves enemyMove;
     List<Hand> hands;
+    FSM fsm;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +25,8 @@ public class Dealer : MonoBehaviour
      deck.shuffle();
      DealToPlayers();
      StartCoroutine(StartingSequence());
+     fsm = FSM.Instance;
+     fsm.FinishedTurn(GameStates.dealing);
     }
     IEnumerator StartingSequence()
     {
@@ -41,6 +46,10 @@ public class Dealer : MonoBehaviour
             card = deck.Pop();
             enemyHand.Deal(card, i);
         }
+    }
+    public Card Deal()
+    {
+        return deck.Pop();
     }
 
 }
