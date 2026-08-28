@@ -7,7 +7,7 @@ using UnityEngine.Analytics;
 public class MemoryAI 
 {
     public List<Card> myCards;
-    List<Card> enemyCards;
+    public List<Card> enemyCards;
    public Card HighestCard()
     {
         Card highest = null;
@@ -32,8 +32,60 @@ public class MemoryAI
     }
     public void CommitToMemory(Card card, int i)
     {
-        Debug.Log("remembering: " + card.number + "of " + card.suite.ToString());
         myCards[i] = card;
+    }
+    public void RememberOpponentCard(Card card, int i)
+    {
+        if (enemyCards == null)
+            enemyCards = new List<Card>(new Card[4]);
+
+        while (enemyCards.Count <= i)
+            enemyCards.Add(null);
+
+        enemyCards[i] = card;
+    }
+    public int FindUnknownSelfSlot()
+    {
+        for (int i = 0; i < myCards.Count; i++)
+        {
+            if (myCards[i] == null)
+                return i;
+        }
+
+        return -1;
+    }
+    public int FindUnknownEnemySlot()
+    {
+        for (int i = 0; i < enemyCards.Count; i++)
+        {
+            if (enemyCards[i] == null)
+                return i;
+        }
+
+        return -1;
+    }
+    public int LowestKnownEnemyCardIndex(int highestNpcValue)
+    {
+        int bestIndex = -1;
+        Card lowest = null;
+
+        for (int i = 0; i < enemyCards.Count; i++)
+        {
+            Card card = enemyCards[i];
+            if (card == null)
+                continue;
+
+            if (card.number >= highestNpcValue)
+                continue;
+
+            if (lowest == null || card.number < lowest.number)
+            {
+                lowest = card;
+                bestIndex = i;
+            }
+        }
+
+        return bestIndex;
     }
     public int SumAllCards()
     {
@@ -43,6 +95,7 @@ public class MemoryAI
             if(card == null){score+=5; continue;}
             score+= card.number +1;
         }
+        Debug.Log("MemoryAI score: " + score);
         return score;
     }
     public void Process()

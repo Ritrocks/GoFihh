@@ -6,6 +6,7 @@ public class enemyHand : Hand
 {
     //[SerializeField]List<TableSlot> hand = new();
     [SerializeField] NPC npc;
+    [SerializeField] bool debugEnemyCardsVisible;
 
     public override string GetIdentity()
     {
@@ -14,7 +15,8 @@ public class enemyHand : Hand
     public override void Deal(Card card, int i)
     {
         hand[i].Deal(card);
-        //Debug.Log("I got dealt " + card.number + " " + card.suite.ToString());
+        if (debugEnemyCardsVisible)
+            hand[i].Show();
     }
     
     public override void showStartingCards()
@@ -26,9 +28,18 @@ public class enemyHand : Hand
         //    Debug.Log("i see " + hand[i].Card.number + " " + hand[i].Card.suite.ToString());
             i++;
         }
+
+        if (debugEnemyCardsVisible)
+        {
+            for (int j = 0; j < hand.Count; j++)
+            {
+                if (hand[j] != null && hand[j].Card != null)
+                    hand[j].Show();
+            }
+        }
     }
     public override void hideStartingCards()
     {
-       
+      
     }
 }

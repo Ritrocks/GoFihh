@@ -18,4 +18,9 @@ public class DrawStack : MonoBehaviour
         Card card = dealer.Deal();
         drawnCard.Deal(card);
     }
+    public Card Click()
+    {
+        Card card = dealer.Deal();
+        return card;
+    }
 }

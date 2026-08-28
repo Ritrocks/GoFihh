@@ -19,6 +19,21 @@ public class AbilityResolver
             case CardAbility.PeekOpponent:
                 ctx.PeekOpponent();
                 return true;
+            default:
+                return false;
+        }
+    }
+
+    public static bool TryResolve(Card playedCard, TableSlot firstTarget, TableSlot secondTarget, GameContext ctx)
+    {
+        if (playedCard == null || ctx == null)
+            return false;
+
+        ctx.FirstTarget = firstTarget;
+        ctx.SecondTarget = secondTarget;
+
+        switch (playedCard.ability)
+        {
             case CardAbility.BlindSwap:
                 ctx.BlindSwap();
                 return true;

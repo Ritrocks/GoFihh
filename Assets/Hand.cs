@@ -30,6 +30,22 @@ public abstract class Hand : MonoBehaviour
         hand[secondIndex].Deal(firstCard);
     }
 
+    public void ClickSlot(int index)
+    {
+        if (index < 0 || index >= hand.Count)
+            return;
+
+        hand[index].Click();
+    }
+
+    public void ClickSlot(int index, Card drawn, bool finishPlayerTurn)
+    {
+        if (index < 0 || index >= hand.Count)
+            return;
+
+        hand[index].Click(drawn, finishPlayerTurn);
+    }
+
     public void SwapWithHand(Hand otherHand, int index)
     {
         if (otherHand == null)

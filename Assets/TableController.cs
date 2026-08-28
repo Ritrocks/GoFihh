@@ -10,13 +10,68 @@ public class TableController : MonoBehaviour
     [SerializeField] playerHand playerHand;
     [SerializeField] enemyHand enemyHand;
 
+    private TableSlot pendingSwapFirst;
+
     void OnEnable()  => TableSlot.OnSlotClicked += HandleSlotClicked;
     void OnDisable() => TableSlot.OnSlotClicked -= HandleSlotClicked;
 
-    void HandleSlotClicked(TableSlot clickedSlot)
+    void HandleSlotClicked(TableSlot clickedSlot, Card drawn, bool finishPlayerTurn)
     {
-        Card tableCard = clickedSlot.Card;
-        Card drawn = drawnCard.Card;
+        if (drawn == null && drawnCard != null)
+            drawn = drawnCard.Card;
+        if (clickedSlot == discardSlot)
+        {
+            if (drawn != null)
+            {
+                discardSlot.Deal(drawn);
+                discardSlot.Show();
+                ClearDrawnCard();
+                if (finishPlayerTurn)
+                    FSM.Instance.FinishedTurn(GameStates.playerTurn);
+            }
+            return;
+        }
+
+        if (drawn != null && (drawn.ability == CardAbility.BlindSwap || drawn.ability == CardAbility.PeekSwap))
+        {
+            if (pendingSwapFirst == null)
+            {
+                pendingSwapFirst = clickedSlot;
+                Debug.Log("Select a second card to swap.");
+                return;
+            }
+
+            if (pendingSwapFirst == clickedSlot)
+            {
+                pendingSwapFirst = null;
+                Debug.Log("Selection cleared.");
+                return;
+            }
+
+            var ctx = new GameContext
+            {
+                PlayerHand = playerHand,
+                EnemyHand = enemyHand,
+                Deck = dealer != null ? dealer.Deck : null,
+                State = FSM.Instance != null ? FSM.Instance.State : GameStates.playerTurn,
+                Table = this,
+                FirstTarget = pendingSwapFirst,
+                SecondTarget = clickedSlot
+            };
+
+            if (AbilityResolver.TryResolve(drawn, pendingSwapFirst, clickedSlot, ctx))
+            {
+                discardSlot.Deal(drawn);
+                discardSlot.Show();
+                ClearDrawnCard();
+                pendingSwapFirst = null;
+                if (finishPlayerTurn)
+                    FSM.Instance.FinishedTurn(GameStates.playerTurn);
+                return;
+            }
+
+            pendingSwapFirst = null;
+        }
 
         if (drawn != null)
         {
@@ -32,17 +87,31 @@ public class TableController : MonoBehaviour
 
             if (AbilityResolver.TryResolve(drawn, clickedSlot, ctx))
             {
-                drawnCard.Deal(null);
-                drawnCard.Hide();
-                FSM.Instance.FinishedTurn(GameStates.playerTurn);
+                Debug.Log("ability was resolved: " + drawn.ability.ToString());
+                discardSlot.Deal(drawn);
+                discardSlot.Show();
+                ClearDrawnCard();
+                if (finishPlayerTurn)
+                    FSM.Instance.FinishedTurn(GameStates.playerTurn);
                 return;
             }
         }
 
+        Card tableCard = clickedSlot.Card;
         clickedSlot.Deal(drawn);
-        drawnCard.Hide();
+        ClearDrawnCard();
         discardSlot.Deal(tableCard); 
         discardSlot.Show();
-        FSM.Instance.FinishedTurn(GameStates.playerTurn);
+        if (finishPlayerTurn)
+            FSM.Instance.FinishedTurn(GameStates.playerTurn);
+    }
+
+    void ClearDrawnCard()
+    {
+        if (drawnCard == null)
+            return;
+
+        drawnCard.Deal(null);
+        drawnCard.Hide();
     }
 }

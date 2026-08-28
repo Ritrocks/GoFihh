@@ -9,7 +9,7 @@ public class TableSlot : CardRenderer
     [SerializeField] Sprite backside;
     Card card;
     public Card Card => card;
-    public static event Action<TableSlot> OnSlotClicked;
+    public static event Action<TableSlot, Card, bool> OnSlotClicked;
    #region visuals
    public override void SetCard(Sprite cardSprite)
     {
@@ -22,7 +22,7 @@ public class TableSlot : CardRenderer
     }
     public override void Deal(Card dealtCard)
     {
-        if(dealtCard == null) {Debug.LogError("dealt card is null"); return;}
+        if(dealtCard == null) return;
         card = dealtCard;
         Hide();
     }
@@ -40,8 +40,16 @@ public class TableSlot : CardRenderer
 
     void OnMouseDown()
     {
-//        Debug.Log("clicked");
-        OnSlotClicked?.Invoke(this);
+        Click();
+    }
+    public void Click()
+    {
+        OnSlotClicked?.Invoke(this, null, true);
+    }
+
+    public void Click(Card drawn, bool finishPlayerTurn)
+    {
+        OnSlotClicked?.Invoke(this, drawn, finishPlayerTurn);
     }
 
 }

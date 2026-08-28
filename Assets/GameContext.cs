@@ -10,10 +10,12 @@ public class GameContext
     public GameStates State;
     public TableController Table;
     public TableSlot TargetSlot;
+    public TableSlot FirstTarget;
+    public TableSlot SecondTarget;
 
     public void PeekSelf()
     {
-        if (TargetSlot != null)
+        if (TargetSlot != null && TargetSlot.Card != null)
         {
             TargetSlot.Show();
         }
@@ -21,7 +23,7 @@ public class GameContext
 
     public void PeekOpponent()
     {
-        if (TargetSlot != null)
+        if (TargetSlot != null && TargetSlot.Card != null)
         {
             TargetSlot.Show();
         }
@@ -29,17 +31,26 @@ public class GameContext
 
     public void BlindSwap()
     {
-        if (TargetSlot == null || PlayerHand == null || EnemyHand == null)
+        if (FirstTarget == null || SecondTarget == null || FirstTarget == SecondTarget)
             return;
 
-        int indexToSwap = 0;
-        PlayerHand.SwapWithHand(EnemyHand, indexToSwap);
+        Card firstCard = FirstTarget.Card;
+        Card secondCard = SecondTarget.Card;
+
+        if (firstCard == null || secondCard == null)
+            return;
+
+        FirstTarget.Deal(secondCard);
+        SecondTarget.Deal(firstCard);
     }
 
     public void PeekSwap()
     {
-        PeekSelf();
-        PeekOpponent();
+        if (FirstTarget == null || SecondTarget == null || FirstTarget == SecondTarget)
+            return;
+
+        FirstTarget.Show();
+        SecondTarget.Show();
         BlindSwap();
     }
 }
