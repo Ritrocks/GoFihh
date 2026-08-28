@@ -40,7 +40,7 @@ public class TableSlot : CardRenderer
 
     void OnMouseDown()
     {
-        Debug.Log("clicked");
+//        Debug.Log("clicked");
         OnSlotClicked?.Invoke(this);
     }
 

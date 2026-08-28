@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -8,7 +9,11 @@ public class FSM : MonoBehaviour
 {
    public static FSM Instance {get; private set;}
    GameStates state;
+   [SerializeField]TurnText turnText;
    public GameStates State => state;
+   bool cambio = false;
+   int turnCounter = 0;
+   public static event Action OnEndGame;
    
     void Awake()
     {
@@ -29,10 +34,16 @@ public class FSM : MonoBehaviour
     }
     public void FinishedTurn(GameStates finishedState)
     {
+        if(cambio) turnCounter++; 
+        if(turnCounter>0) {OnEndGame?.Invoke(); return;}
         state = finishedState == GameStates.enemyTurn
         ? GameStates.playerTurn
         : GameStates.enemyTurn;
-        Debug.Log("switching state");
+        turnText.updateText(state.ToString());
+    }
+    public void Cambio()
+    {
+        cambio = true;
     }
 }
 

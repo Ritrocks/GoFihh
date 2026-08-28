@@ -6,23 +6,41 @@ using UnityEngine.Analytics;
 
 public class MemoryAI 
 {
-    List<Card> myCards;
+    public List<Card> myCards;
     List<Card> enemyCards;
+   public Card HighestCard()
+    {
+        Card highest = null;
+        foreach (Card card in myCards)
+        {
+            if (card == null) continue;
+            if (highest == null || card.number > highest.number)
+            {
+                highest = card;
+            }
+        }
+        return highest;
+    }
+    public int indexOf(Card card)
+    {
+        return myCards.IndexOf(card);
+    }
     public MemoryAI()
     {
-        myCards = new();
-        enemyCards = new();
+        myCards  = new List<Card>(new Card[4]);
+        enemyCards = new List<Card>(new Card[4]);
     }
     public void CommitToMemory(Card card, int i)
     {
-        myCards.Add(card);
+        Debug.Log("remembering: " + card.number + "of " + card.suite.ToString());
+        myCards[i] = card;
     }
     public void Process()
     {
-        for(int i = 0; i<myCards.Count; i++)
+       /*  for(int i = 0; i<myCards.Count; i++)
         {
             if(myCards[i] == null)continue;
-            if (Random.Range(0, 10) < 2)
+            if (Random.Range(0, 100) < 2)
             {
                 myCards[i] = null;
             }
@@ -30,10 +48,10 @@ public class MemoryAI
         for(int i = 0; i<enemyCards.Count; i++)
         {
             if(enemyCards[i]==null) continue;
-            if (Random.Range(0, 10) < 4)
+            if (Random.Range(0, 100) < 4)
             {
                 enemyCards[i] = null;
             }
-        }
+        } */
     }
 }

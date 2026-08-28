@@ -1,34 +1,39 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.XR;
 
-public class enemyHand : Hand
+public class playerHand : Hand
 {
     //[SerializeField]List<TableSlot> hand = new();
-    [SerializeField] NPC npc;
-
     public override string GetIdentity()
     {
-        return "Enemy";
+        return "Player";
     }
     public override void Deal(Card card, int i)
     {
         hand[i].Deal(card);
-        //Debug.Log("I got dealt " + card.number + " " + card.suite.ToString());
     }
-    
+
     public override void showStartingCards()
     {
         int i = 0;
         while(i < 2)
         {
-            npc.Show(hand[i].Card, i);
-        //    Debug.Log("i see " + hand[i].Card.number + " " + hand[i].Card.suite.ToString());
+            hand[i].Show();
             i++;
         }
     }
     public override void hideStartingCards()
     {
-       
+         int i = 0;
+        while(i < 2)
+        {
+            hand[i].Hide();
+            i++;
+        }
     }
+
 }

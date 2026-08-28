@@ -27,7 +27,6 @@ public class CardDeck
             deck[k] = deck[n];
             deck[n] = value;    
         }
-        Debug.Log("shuffled");
     }
 
     public void logDeck(){
@@ -40,7 +39,7 @@ public class CardDeck
     public Card Pop()
     {
         Card victim = deck[0];
-        if (victim == null) Debug.LogError("found the error");
+        if (victim == null) Debug.LogError("no cards left");
         int i = 0;
         while(i<deck.Count-1)
         {

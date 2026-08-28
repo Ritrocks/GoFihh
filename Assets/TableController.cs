@@ -19,5 +19,6 @@ public class TableController : MonoBehaviour
         drawnCard.Hide();
         discardSlot.Deal(tableCard); 
         discardSlot.Show();
+        FSM.Instance.FinishedTurn(GameStates.playerTurn);
     }
 }

@@ -16,19 +16,18 @@ public abstract class CardRenderer :MonoBehaviour
             case Suites.Hearts:
             break;
             case Suites.Spades:
-            i+=12;
+            i+=13;
             break;
             case Suites.Clubs:
-            i+= 24;
+            i+= 26;
             break;
             case Suites.Diamonds:
-            i+=36;
+            i+=39;
             break;
             default:
             break;
         }
         i+=number;
-        Debug.Log(i);
         return faceList[i];
     }
 }
