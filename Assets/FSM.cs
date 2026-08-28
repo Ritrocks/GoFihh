@@ -17,18 +17,14 @@ public class FSM : MonoBehaviour
    
     void Awake()
     {
-        // 2. Check if an instance already exists
         if (Instance != null && Instance != this)
         {
-            // Destroy this duplicate object immediately
             Destroy(gameObject);
             return;
         }
 
-        // 3. Set the definitive instance
         Instance = this;
 
-        // 4. Optional: Keep this object alive when switching scenes
         DontDestroyOnLoad(gameObject);
         state = GameStates.dealing;
     }

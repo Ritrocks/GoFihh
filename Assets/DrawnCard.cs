@@ -15,6 +15,13 @@ public class DrawnCard : CardRenderer
     public override void Deal(Card drawn)
     {
         card = drawn;
+
+        if (drawn == null)
+        {
+            Hide();
+            return;
+        }
+
         SetCard(MakeMyFace(drawn.number, drawn.suite));
     }
 

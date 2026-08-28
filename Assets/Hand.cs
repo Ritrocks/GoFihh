@@ -6,6 +6,8 @@ using UnityEngine;
 public abstract class Hand : MonoBehaviour
 {
     [SerializeField] protected List<TableSlot> hand = new();
+    public List<TableSlot> Slots => hand;
+
     public abstract void Deal(Card card, int i);
     public abstract void showStartingCards();
     public abstract void hideStartingCards();
@@ -15,6 +17,32 @@ public abstract class Hand : MonoBehaviour
         {
             slot.Show();
         }
+    }
+    public void SwapCards(int firstIndex, int secondIndex)
+    {
+        if (firstIndex < 0 || secondIndex < 0 || firstIndex >= hand.Count || secondIndex >= hand.Count)
+            return;
+
+        Card firstCard = hand[firstIndex].Card;
+        Card secondCard = hand[secondIndex].Card;
+
+        hand[firstIndex].Deal(secondCard);
+        hand[secondIndex].Deal(firstCard);
+    }
+
+    public void SwapWithHand(Hand otherHand, int index)
+    {
+        if (otherHand == null)
+            return;
+
+        if (index < 0 || index >= hand.Count || index >= otherHand.hand.Count)
+            return;
+
+        Card myCard = hand[index].Card;
+        Card otherCard = otherHand.hand[index].Card;
+
+        hand[index].Deal(otherCard);
+        otherHand.hand[index].Deal(myCard);
     }
     public List<Card> CardsInHand()
     {

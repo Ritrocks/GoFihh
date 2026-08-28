@@ -19,6 +19,9 @@ public class Dealer : MonoBehaviour
     Moves enemyMove;
     List<Hand> hands;
     FSM fsm;
+    public CardDeck Deck => deck;
+    public playerHand PlayerHand => playerHand;
+    public enemyHand EnemyHand => enemyHand;
     // Start is called before the first frame update
     void Start()
     {
