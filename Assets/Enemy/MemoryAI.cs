@@ -35,6 +35,16 @@ public class MemoryAI
         Debug.Log("remembering: " + card.number + "of " + card.suite.ToString());
         myCards[i] = card;
     }
+    public int SumAllCards()
+    {
+        int score = 0;
+        foreach(Card card in myCards)
+        {
+            if(card == null){score+=5; continue;}
+            score+= card.number +1;
+        }
+        return score;
+    }
     public void Process()
     {
        /*  for(int i = 0; i<myCards.Count; i++)

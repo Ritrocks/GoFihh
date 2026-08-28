@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
@@ -42,17 +43,23 @@ public class Dealer : MonoBehaviour
     void TallyScores()
     {
         int[] scores = new int[2];
-        int i = 0;
+        int counter = 0;
         foreach(Hand hand in hands)
         {
             hand.ShowAll();
-            int score = scores[i];
             foreach(Card card in hand.CardsInHand())
             {
-                score += card.number + 1;
+                scores[counter] += card.number + 1;
             }
+            Debug.Log(hand.GetIdentity() + " score: " + scores[counter]);
+            counter++;
         }
-        int minIndex = Array.IndexOf(scores, scores.Min());
+          int minIndex = 0;
+        for (int i = 1; i < scores.Length; i++)
+        {
+            if (scores[i] < scores[minIndex])
+                minIndex = i;
+        }        
         String winner = hands[minIndex].GetIdentity();
         Debug.Log(winner + " wins!");
     }

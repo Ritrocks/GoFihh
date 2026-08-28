@@ -49,10 +49,12 @@ public class NPC : MonoBehaviour
             DiscardAndSwap(highestCard);
         }
         else Discard(highestCard);
+        if(memory.SumAllCards()<12){fsm.Cambio(); Debug.Log("Cambio!");}
     }
+    
     void DiscardAndSwap(Card card)
     {
-        Debug.Log("swapping out:" + card.number + " " + card.suite.ToString());
+       // Debug.Log("swapping out:" + card.number + " " + card.suite.ToString());
         hand.Deal(drawnCard, memory.indexOf(card));
         memory.CommitToMemory(drawnCard, memory.indexOf(card));
         drawnCard = null;
@@ -61,7 +63,7 @@ public class NPC : MonoBehaviour
     }
     void Discard(Card card)
     {
-        Debug.Log("discarding: "+ drawnCard.number + " " + drawnCard.suite.ToString());
+       // Debug.Log("discarding: "+ drawnCard.number + " " + drawnCard.suite.ToString());
         discardPile.Deal(drawnCard);
         discardPile.Show();
     }
