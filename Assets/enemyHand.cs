@@ -16,7 +16,7 @@ public class enemyHand : Hand
     {
         hand[i].Deal(card);
         if (debugEnemyCardsVisible)
-            hand[i].Show();
+            hand[i].Show(false);
     }
     
     public override void showStartingCards()
@@ -34,7 +34,7 @@ public class enemyHand : Hand
             for (int j = 0; j < hand.Count; j++)
             {
                 if (hand[j] != null && hand[j].Card != null)
-                    hand[j].Show();
+                    hand[j].Show(false);
             }
         }
     }

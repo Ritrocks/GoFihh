@@ -22,7 +22,7 @@ public class playerHand : Hand
         int i = 0;
         while(i < 2)
         {
-            hand[i].Show();
+            hand[i].Show(true);
             i++;
         }
     }

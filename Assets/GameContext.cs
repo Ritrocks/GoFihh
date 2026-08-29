@@ -17,7 +17,7 @@ public class GameContext
     {
         if (TargetSlot != null && TargetSlot.Card != null)
         {
-            TargetSlot.Show();
+            TargetSlot.Show(true, State != GameStates.enemyTurn);
         }
     }
 
@@ -25,7 +25,7 @@ public class GameContext
     {
         if (TargetSlot != null && TargetSlot.Card != null)
         {
-            TargetSlot.Show();
+            TargetSlot.Show(true, State != GameStates.enemyTurn);
         }
     }
 
@@ -49,8 +49,9 @@ public class GameContext
         if (FirstTarget == null || SecondTarget == null || FirstTarget == SecondTarget)
             return;
 
-        FirstTarget.Show();
-        SecondTarget.Show();
+        bool revealFace = State != GameStates.enemyTurn;
+        FirstTarget.Show(true, revealFace);
+        SecondTarget.Show(true, revealFace);
         BlindSwap();
     }
 }

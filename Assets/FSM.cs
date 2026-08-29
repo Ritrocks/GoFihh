@@ -39,6 +39,7 @@ public class FSM : MonoBehaviour
     }
     public void Cambio()
     {
+        Debug.Log("cambio");
         cambio = true;
     }
 }

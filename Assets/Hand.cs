@@ -15,7 +15,7 @@ public abstract class Hand : MonoBehaviour
     {
         foreach (TableSlot slot in hand)
         {
-            slot.Show();
+            slot.Show(false);
         }
     }
     public void SwapCards(int firstIndex, int secondIndex)

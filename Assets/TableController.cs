@@ -24,7 +24,7 @@ public class TableController : MonoBehaviour
             if (drawn != null)
             {
                 discardSlot.Deal(drawn);
-                discardSlot.Show();
+                discardSlot.Show(false);
                 ClearDrawnCard();
                 if (finishPlayerTurn)
                     FSM.Instance.FinishedTurn(GameStates.playerTurn);
@@ -62,7 +62,7 @@ public class TableController : MonoBehaviour
             if (AbilityResolver.TryResolve(drawn, pendingSwapFirst, clickedSlot, ctx))
             {
                 discardSlot.Deal(drawn);
-                discardSlot.Show();
+                discardSlot.Show(false);
                 ClearDrawnCard();
                 pendingSwapFirst = null;
                 if (finishPlayerTurn)
@@ -89,7 +89,7 @@ public class TableController : MonoBehaviour
             {
                 Debug.Log("ability was resolved: " + drawn.ability.ToString());
                 discardSlot.Deal(drawn);
-                discardSlot.Show();
+                discardSlot.Show(false);
                 ClearDrawnCard();
                 if (finishPlayerTurn)
                     FSM.Instance.FinishedTurn(GameStates.playerTurn);
@@ -101,7 +101,7 @@ public class TableController : MonoBehaviour
         clickedSlot.Deal(drawn);
         ClearDrawnCard();
         discardSlot.Deal(tableCard); 
-        discardSlot.Show();
+        discardSlot.Show(false);
         if (finishPlayerTurn)
             FSM.Instance.FinishedTurn(GameStates.playerTurn);
     }
