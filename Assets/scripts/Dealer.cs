@@ -63,8 +63,14 @@ public class Dealer : MonoBehaviour
             if (scores[i] < scores[minIndex])
                 minIndex = i;
         }        
-        String winner = hands[minIndex].GetIdentity();
+        string winner = hands[minIndex].GetIdentity();
         Debug.Log(winner + " wins!");
+
+        TurnText turnText = FindObjectOfType<TurnText>();
+        if (turnText != null)
+        {
+            turnText.updateText(winner + " wins!");
+        }
     }
     IEnumerator StartingSequence()
     {
