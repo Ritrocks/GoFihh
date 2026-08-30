@@ -64,12 +64,12 @@ public class Dealer : MonoBehaviour
                 minIndex = i;
         }        
         string winner = hands[minIndex].GetIdentity();
-        Debug.Log(winner + " wins!");
+        Debug.Log(winner + " wins.");
 
         TurnText turnText = FindObjectOfType<TurnText>();
         if (turnText != null)
         {
-            turnText.updateText(winner + " wins!");
+            turnText.updateText(winner + " wins.");
         }
     }
     IEnumerator StartingSequence()

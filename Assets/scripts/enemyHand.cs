@@ -10,7 +10,7 @@ public class enemyHand : Hand
 
     public override string GetIdentity()
     {
-        return "Enemy";
+        return "God";
     }
     public override void Deal(Card card, int i)
     {

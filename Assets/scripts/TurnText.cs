@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TurnText : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class TurnText : MonoBehaviour
     }
     public void updateText(String texttoupdate)
     {
+        Debug.Log(texttoupdate);
         text.text = texttoupdate;
     }
 }

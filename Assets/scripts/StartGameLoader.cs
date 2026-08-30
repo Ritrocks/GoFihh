@@ -26,9 +26,15 @@ public class StartGameLoader : MonoBehaviour
 
         if (SceneManager.GetActiveScene().name == sceneToLoad)
         {
+            
             return;
         }
+        Time.timeScale = 1f;
 
+        if (FSM.Instance != null)
+        {
+            Destroy(FSM.Instance.gameObject);
+        }
         SceneManager.LoadScene(sceneToLoad);
     }
 }

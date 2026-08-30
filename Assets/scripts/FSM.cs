@@ -24,16 +24,11 @@ public class FSM : MonoBehaviour
         }
 
         Instance = this;
-        FindTurnText();
+        //FindTurnText();
         DontDestroyOnLoad(gameObject);
         state = GameStates.dealing;
     }
 
-    private void FindTurnText()
-    {
-        if (turnText == null)
-            turnText = FindObjectOfType<TurnText>();
-    }
 
     public void FinishedTurn(GameStates finishedState)
     {
@@ -44,21 +39,33 @@ public class FSM : MonoBehaviour
             return;
         }
 
-        state = finishedState == GameStates.enemyTurn
+        state = finishedState == GameStates.godTurn
             ? GameStates.playerTurn
-            : GameStates.enemyTurn;
+            : GameStates.godTurn;
 
         if (turnText != null)
-            turnText.updateText(state.ToString());
+        switch (state)
+            {
+                case GameStates.playerTurn:
+                turnText.updateText("Your Turn");
+                break;
+                case GameStates.godTurn:
+                turnText.updateText("God's Turn");
+                break;
+                default:
+                turnText.updateText("Dealing");
+
+                break;
+            }
+            
     }
 
     public void Cambio()
     {
-        FindTurnText();
-        if (turnText != null)
-            turnText.updateText("Cambio.");
 
-        Debug.Log("cambio");
+     //   FindTurnText();
+        turnText.updateText("Cambio.");
+
         PlayCambioMusic();
         cambio = true;
     }
@@ -73,6 +80,6 @@ public class FSM : MonoBehaviour
 public enum GameStates
 {
     playerTurn,
-    enemyTurn,
+    godTurn,
     dealing
 }

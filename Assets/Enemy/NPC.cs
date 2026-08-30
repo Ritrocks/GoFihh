@@ -28,7 +28,7 @@ public class NPC : MonoBehaviour
     void Update()
     {
         memory.Process();
-        if (fsm.State == GameStates.enemyTurn && !playing)
+        if (fsm.State == GameStates.godTurn && !playing)
     {
         playing = true;
         StartCoroutine(Play());
@@ -40,7 +40,7 @@ public class NPC : MonoBehaviour
         DrawCard();
         yield return new WaitForSeconds(UnityEngine.Random.Range(1f,2f));
         MakeDecision();
-        fsm.FinishedTurn(GameStates.enemyTurn);
+        fsm.FinishedTurn(GameStates.godTurn);
         playing = false;
     }
     void MakeDecision()
