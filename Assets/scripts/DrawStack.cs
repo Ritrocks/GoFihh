@@ -8,8 +8,10 @@ public class DrawStack : MonoBehaviour
     FSM fsm;
     [SerializeField] Dealer dealer;
     [SerializeField] CardRenderer drawnCard;
+    AudioSource audio;
     void OnEnable()
     {
+        audio = GetComponent<AudioSource>();
         fsm = FSM.Instance;
     }
     void OnMouseDown()
@@ -17,6 +19,7 @@ public class DrawStack : MonoBehaviour
         if(fsm.State != GameStates.playerTurn) return;
         Card card = dealer.Deal();
         drawnCard.Deal(card);
+        audio.Play();
     }
     public Card Click()
     {
