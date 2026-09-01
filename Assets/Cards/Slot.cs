@@ -37,6 +37,9 @@ public class TableSlot : CardRenderer
         Hide();
     }
 
+    // How long a Show() reveal stays face-up before flipping back.
+    public float RevealDuration => showingAnimation != null ? showingAnimation.length : 0f;
+
     public void Show(bool animate)
     {
         Show(animate, true);
@@ -67,15 +70,18 @@ public class TableSlot : CardRenderer
 
     void OnMouseDown()
     {
+        Debug.Log($"[TableSlot] Mouse down on {name} (holds {(card != null ? $"{card.number} of {card.suite}" : "nothing")})");
         Click();
     }
     public void Click()
     {
+        Debug.Log($"[TableSlot] Click() on {name}, no drawn card passed, finishPlayerTurn=true");
         OnSlotClicked?.Invoke(this, null, true);
     }
 
     public void Click(Card drawn, bool finishPlayerTurn)
     {
+        Debug.Log($"[TableSlot] Click() on {name}, drawn={(drawn != null ? $"{drawn.number} of {drawn.suite}" : "null")}, finishPlayerTurn={finishPlayerTurn}");
         OnSlotClicked?.Invoke(this, drawn, finishPlayerTurn);
     }
 

@@ -6,19 +6,22 @@ public class AbilityResolver
 {
     public static bool TryResolve(Card playedCard, TableSlot targetSlot, GameContext ctx)
     {
+        Debug.Log($"[AbilityResolver] TryResolve single-target: card={(playedCard != null ? $"{playedCard.number} of {playedCard.suite} ({playedCard.ability})" : "null")}, target={(targetSlot == null ? "null" : targetSlot.name)}");
+
         if (playedCard == null || ctx == null)
+        {
+            Debug.Log("[AbilityResolver] Aborted: played card or context is null.");
             return false;
+        }
 
         ctx.TargetSlot = targetSlot;
 
         switch (playedCard.ability)
         {
             case CardAbility.PeekSelf:
-                ctx.PeekSelf();
-                return true;
+                return ctx.PeekSelf();
             case CardAbility.PeekOpponent:
-                ctx.PeekOpponent();
-                return true;
+                return ctx.PeekOpponent();
             default:
                 return false;
         }
